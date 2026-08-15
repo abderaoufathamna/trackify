@@ -1,0 +1,147 @@
+:root {
+    --green: #16a34a;
+    --green-dark: #14532d;
+    --bg: #fefce8;
+    --text: #111827;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    background: var(--bg);
+    font-family: 'Segoe UI';
+}
+
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.logo a {
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+/* CARD */
+.container {
+    position: relative;
+    width: 800px;
+    height: 500px;
+    display: flex;
+    background: #fff;
+    overflow: hidden;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+/* FORM SIDE */
+.form-container {
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+}
+
+input {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+.btn-primary {
+    margin-top: 10px;
+    padding: 12px;
+    border: none;
+    background: var(--green);
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* OVERLAY SIDE (colored panel) */
+.overlay-panel {
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(135deg, #14532d, #16a34a);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 40px;
+}
+
+.overlay-panel h1 {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.ghost {
+    margin-top: 20px;
+    background: transparent;
+    border: 2px solid white;
+    border-radius: 10px;
+    padding: 10px 24px;
+    color: white;
+    text-decoration: none;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.ghost:hover {
+    background: rgba(255,255,255,0.15);
+}
+
+/* ALERTS */
+.alert {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: center;
+}
+
+.alert.error { background: #fee2e2; color: #991b1b; }
+.alert.success { background: #dcfce7; color: #166534; }
+
+/* VIDEO BACKGROUND */
+#bg-video {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.4;
+}
+
+/* PAGE TRANSITION */
+.container {
+    animation: cardIn 0.35s ease;
+}
+
+@keyframes cardIn {
+    from { opacity: 0; transform: translateY(16px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.container.leaving {
+    animation: cardOut 0.25s ease forwards;
+}
+
+@keyframes cardOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to   { opacity: 0; transform: translateY(-16px) scale(0.97); }
+}
