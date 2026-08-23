@@ -6,21 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attendance extends Model
 {
-    //
-    protected $fillable = [
-        'student_id', 'module_id', 'date', 'status',
-    ];
+    protected $fillable = ['student_id', 'module_id', 'date', 'status'];
 
     protected $casts = [
         'date' => 'date',
     ];
-    public function user ()
+
+    public function student()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(Student::class);
     }
 
-    public function type ()
+    public function module()
     {
-        return $this->belongsTo(SubscriptionType::class);
+        return $this->belongsTo(Module::class);
     }
 }

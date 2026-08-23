@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -16,23 +16,23 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         $credentials = $request->validate([
-            'identifier' => ['requered', 'string'],
-            'password'   => ['requered', 'string'],
+            'identifier' => ['required', 'string'],
+            'password'   => ['required', 'string'],
         ]);
 
-        $field = filter_var($credentials['identifier'], FILTER_validate_email)
-        ? 'email' : 'username';
+        $field = filter_var($credentials['identifier'], FILTER_VALIDATE_EMAIL)
+            ? 'email'
+            : 'username';
 
         $attempt = [
-            $field    =>$credentials['identifier'],
-            $password =>$credentials['password'],
+            $field       => $credentials['identifier'],
+            'password'   => $credentials['password'],
         ];
 
-        if (! Auth::attept($attempt, $request->boolean('remember')))
-        {
+        if (! Auth::attempt($attempt, $request->boolean('remember'))) {
             return back()->withErrors([
-                'identifier', 'Inccourect informations'])
-                ->onlyInput('identifier');
+                'identifier' => 'Inccourect informations.',
+            ])->onlyInput('identifier');
         }
 
         $request->session()->regenerate();
@@ -49,6 +49,6 @@ class LoginController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/logout');
+        return redirect('/login');
     }
 }
