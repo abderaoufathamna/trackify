@@ -1,0 +1,72 @@
+/* ================= VARIABLES ================= */
+:root {
+    --green-primary: #16a34a;
+    --green-dark: #14532d;
+    --bg: #fefce8;
+    --text: #111827;
+    --card: #ffffff;
+    --green-glow: rgba(22, 163, 74, 0.3);
+    --bg-light: #f8fafc;
+    --text-main: #0f172a;
+    --text-muted: #64748b;
+    --white: #ffffff;
+}
+
+/* ================= RESET ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    color: var(--text-main);
+}
+/* ================= BODY ================= */
+body {
+    background-color: var(--bg-light);
+    overflow-x: hidden;
+}
+/* ================= HEADER ================= */
+
+/* ================= LAYOUT ================= */
+
+/* ================= SIDEBAR ================= */
+
+/* ================= STATS ================= */
+
+/* ================= SECTIONS ================= */
+
+/* ================= TABLE ================= */
+
+/* ================= FOOTER ================= */
+
+/* ================= CHART ================= */
+
+/* ========= Edit . Delete btn ===========*/
+
+/* ================= Create subscriptions ================== */
+
+/* ========= FORM STYLES ========= */
+
+/* Section header accent */
+
+/* ========= ADMIN FORMS ========= */
+
+/* Section h2 accent (shared) */
+
+/* ================= SCROLLBAR ================= */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--green-primary);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--green-dark);
+}
