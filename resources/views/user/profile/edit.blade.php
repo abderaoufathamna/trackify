@@ -37,6 +37,16 @@
                     class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent">
             </div>
 
+            <!-- Check if old password is correct. -->
+            <div>
+                <label class="block text-sm font-medium text-slate-700 mb-1">Current Password</label>
+                <input type="password" name="current_password" placeholder="Required only if changing password"
+                    class="w-full px-3 py-2 border border-slate-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent">
+                @error('current_password')
+                    <p class="text-xs text-red-600 mt-1">{{ $message }}</p>
+                @enderror
+            </div>
+
             <div>
                 <label class="block text-sm font-medium text-slate-700 mb-1">New Password</label>
                 <input type="password" name="password" placeholder="Leave empty if no change"

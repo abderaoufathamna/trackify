@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -21,10 +22,17 @@ class ProfileController extends Controller
         $user = Auth::user();
 
         $validated = $request->validate([
-            'username'       => ['required', 'string', 'min:3', 'max:255', 'unique:users,username,'.$user->id],
-            'password'       => ['nullable', 'string', 'min:4'],
-            'profile_image'  => ['nullable', 'image', 'max:2048'],
+            'username'         => ['required', 'string', 'min:3', 'max:255', 'unique:users,username,'.$user->id],
+            'current_password' => ['nullable', 'required_with:password', 'string'],
+            'password'         => ['nullable', 'string', 'min:4'],
+            'profile_image'    => ['nullable', 'image', 'max:2048'],
         ]);
+
+        if (!empty($validated['password'])) {
+            if (!Hash::check($validated['current_password'], $user->password )) {
+                return back()->withErrors(['current_password' => 'Current password is incorrect.']);
+            }
+        }
 
         $user->username = $validated['username'];
 
@@ -36,7 +44,6 @@ class ProfileController extends Controller
             if ($user->profile_image) {
                 Storage::disk('public')->delete($user->profile_image);
             }
-
             $user->profile_image = $request->file('profile_image')->store('profile-images', 'public');
         }
 
