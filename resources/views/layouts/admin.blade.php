@@ -5,23 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Trackify')</title>
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50:'#f0fdf4', 100:'#dcfce7', 400:'#4ade80',
-                            500:'#22c55e', 600:'#16a34a', 700:'#15803d',
-                            800:'#14532d', 900:'#0f3d22',
-                        }
-                    }
-                }
-            }
-        }
-    </script>
-    <script src="https://unpkg.com/lucide@latest"></script>
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-slate-50 min-h-screen flex flex-col">
 
@@ -155,6 +139,5 @@
     </div>
 
     @stack('scripts')
-    <script>lucide.createIcons();</script>
 </body>
 </html>
