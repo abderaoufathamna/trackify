@@ -54,21 +54,17 @@ class UserController extends Controller
 
     public function update(Request $request, User $user)
     {
-        if ($user->role === 'admin') {
-            abort(403, 'You cannot edit an admin account from here.');
-        }
-
         $validated = $request->validate([
             'username' => ['required', 'string', 'max:255', 'unique:users,username,'.$user->id],
             'password' => ['nullable', 'string', 'min:4'],
             'role'     => ['required', 'in:admin,user'],
         ]);
 
-        if ($validated['role'] === 'user' && $user->role === 'admin') {
+        if ($user->role === 'admin' && $validated['role'] === 'user') {
             $adminCount = User::where('role', 'admin')->count();
 
             if ($adminCount <= 1) {
-                return back()->withErrors(['role' => 'You cannot remove the last admin.']);
+                return back()->withErrors(['role' => 'Cannot demote the last admin.']);
             }
         }
 
