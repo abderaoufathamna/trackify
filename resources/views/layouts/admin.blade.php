@@ -24,7 +24,7 @@
                     <a href="{{ route('admin.dashboard') }}"
                        class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition
                               {{ request()->routeIs('admin.dashboard') ? 'bg-brand-600 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
-                        <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
+                        <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Admin Dashboard
                     </a>
                 </div>
 

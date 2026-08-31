@@ -20,10 +20,19 @@
 
             <nav class="flex-1 px-3 py-6 space-y-6 overflow-y-auto">
 
+                @if (auth()->check() && auth()->user()->role === 'admin')
+                    <div>
+                        <a href="{{ route('admin.dashboard') }}"
+                            class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition
+                                {{ request()->routeIs('admin.dashboard') ? 'bg-brand-600 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
+                            <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Admin Dashboard
+                        </a>
+                    </div>
+                @endif
                 <div>
                     <a href="{{ route('user.dashboard') }}"
-                       class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition
-                              {{ request()->routeIs('user.dashboard') ? 'bg-brand-600 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
+                        class="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition
+                            {{ request()->routeIs('user.dashboard') ? 'bg-brand-600 text-white' : 'hover:bg-slate-800 hover:text-white' }}">
                         <i data-lucide="layout-dashboard" class="w-4 h-4"></i> Dashboard
                     </a>
                 </div>
@@ -85,7 +94,7 @@
                     <a href="{{ route('user.profile.edit') }}" class="flex items-center gap-2 group">
                         @if (auth()->user()->profile_image)
                             <img src="{{ asset('storage/'.auth()->user()->profile_image) }}"
-                                 class="w-9 h-9 rounded-full object-cover ring-2 ring-transparent group-hover:ring-brand-500 transition">
+                                class="w-9 h-9 rounded-full object-cover ring-2 ring-transparent group-hover:ring-brand-500 transition">
                         @else
                             <div class="w-9 h-9 rounded-full bg-brand-100 text-brand-700 flex items-center justify-center font-semibold text-sm ring-2 ring-transparent group-hover:ring-brand-500 transition">
                                 {{ strtoupper(substr(auth()->user()->username, 0, 1)) }}
